@@ -2,6 +2,7 @@ import React from "react";
 import { Input } from "./components/Input";
 import { Select } from "./components/Select";
 import styled from "styled-components";
+import { Button } from "./components/Button";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -30,65 +31,75 @@ const Container = styled.div`
 function App() {
   return (
     <>
-      <Finished />
       <Container>
-        <h2>Select </h2>
-        <Select
-          sm
-          opitions={[
-            { name: "1x 100,00", value: "100" },
-            { name: "2x 55,00", value: "110" },
-            { name: "3x 40,00", value: "120" },
-          ]}
-          setValue={(e) => console.log(e)}
-          label="Label:"
-        />
-
+        <h2>Butttons Primary</h2>
+        <br />
+        <h4>Butttons default</h4>
+        <Button onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>
         <code>
-          {`<Select
-          sm
-          opitions={[{ name: "1x 100,00", value: "100" },{ name: "2x 55,00", value: "110" },{ name: "3x 40,00", value: "120" }]}
-          setValue={(e) => console.log(e)}
-          label="Label:"
-        />`}
+          {`<Button onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
         </code>
 
-        <h2>Select error</h2>
-        <Select
-          sm
-          desabled
-          opitions={[
-            { name: "1x 100,00", value: "100" },
-            { name: "2x 55,00", value: "110" },
-            { name: "3x 40,00", value: "120" },
-          ]}
-          setValue={(e) => console.log(e)}
-          label="Label:"
-          errors={[
-            {
-              description: "error message here",
-              errorType: "error",
-              inputName: "e-mail",
-            },
-          ]}
-        />
 
+        <h4>Butttons Primary SM</h4>
+        <Button sm onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>
         <code>
-          {`<Select
-          sm
-          opitions={[{ name: "1x 100,00", value: "100" },{ name: "2x 55,00", value: "110" },{ name: "3x 40,00", value: "120" }]}
-          setValue={(e) => console.log(e)}
-          label="Label:"
-          errors={[
-            {
-              description: "error message here",
-              errorType: "error",
-              inputName: "e-mail",
-            },
-          ]}
-        />`}
+          {`<Button sm onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
+        </code>
+
+        <h4>Butttons Primary XS</h4>
+        <Button xs onClick={() => console.log(Math.random())}>
+          Button
+        </Button>
+        <code>
+          {`<Button xs onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
         </code>
       </Container>
+      <Container>
+        <h2>Butttons Secondary</h2>
+        <br />
+        <h4>Butttons default</h4>
+        <Button secondary onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>
+        <code>
+          {`<Button onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
+        </code>
+
+
+        <h4>Butttons Secondary SM</h4>
+        <Button sm secondary onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>
+        <code>
+          {`<Button sm onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
+        </code>
+
+        <h4>Butttons Secondary XS</h4>
+        <Button xs secondary onClick={() => console.log(Math.random())}>
+          Button
+        </Button>
+        <code>
+          {`<Button xs onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
+        </code>
+      </Container>
+      <Finished />
     </>
   );
 }
@@ -438,6 +449,64 @@ const Finished = () => {
           setValue={(e) => console.log(e)}
           type="card"
           maskInput="9999 9999 9999 9999"
+          errors={[
+            {
+              description: "error message here",
+              errorType: "error",
+              inputName: "e-mail",
+            },
+          ]}
+        />`}
+        </code>
+      </Container>
+      <Container>
+        <h2>Select </h2>
+        <Select
+          sm
+          opitions={[
+            { name: "1x 100,00", value: "100" },
+            { name: "2x 55,00", value: "110" },
+            { name: "3x 40,00", value: "120" },
+          ]}
+          setValue={(e) => console.log(e)}
+          label="Label:"
+        />
+
+        <code>
+          {`<Select
+          sm
+          opitions={[{ name: "1x 100,00", value: "100" },{ name: "2x 55,00", value: "110" },{ name: "3x 40,00", value: "120" }]}
+          setValue={(e) => console.log(e)}
+          label="Label:"
+        />`}
+        </code>
+
+        <h2>Select error</h2>
+        <Select
+          sm
+          desabled
+          opitions={[
+            { name: "1x 100,00", value: "100" },
+            { name: "2x 55,00", value: "110" },
+            { name: "3x 40,00", value: "120" },
+          ]}
+          setValue={(e) => console.log(e)}
+          label="Label:"
+          errors={[
+            {
+              description: "error message here",
+              errorType: "error",
+              inputName: "e-mail",
+            },
+          ]}
+        />
+
+        <code>
+          {`<Select
+          sm
+          opitions={[{ name: "1x 100,00", value: "100" },{ name: "2x 55,00", value: "110" },{ name: "3x 40,00", value: "120" }]}
+          setValue={(e) => console.log(e)}
+          label="Label:"
           errors={[
             {
               description: "error message here",
