@@ -1,5 +1,6 @@
 import React from "react";
 import { Input } from "./components/Input";
+import { Select } from "./components/Select";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -31,34 +32,38 @@ function App() {
     <>
       <Finished />
       <Container>
-        <h2>Card </h2>
-        <Input
+        <h2>Select </h2>
+        <Select
           sm
-          placeHolder="0000 0000 0000"
-          label="Label: "
+          opitions={[
+            { name: "1x 100,00", value: "100" },
+            { name: "2x 55,00", value: "110" },
+            { name: "3x 40,00", value: "120" },
+          ]}
           setValue={(e) => console.log(e)}
-          type="card"
-          maskInput="9999 9999 9999 9999"
+          label="Label:"
         />
 
         <code>
-          {`<Input
+          {`<Select
           sm
-          placeHolder="0000 0000 0000"
-          label="Label: "
+          opitions={[{ name: "1x 100,00", value: "100" },{ name: "2x 55,00", value: "110" },{ name: "3x 40,00", value: "120" }]}
           setValue={(e) => console.log(e)}
-          type="card"
-          maskInput="9999 9999 9999 9999"
+          label="Label:"
         />`}
         </code>
-        <h2>Card error</h2>
-        <Input
+
+        <h2>Select error</h2>
+        <Select
           sm
-          placeHolder="0000 0000 0000"
-          label="Label: "
+          desabled
+          opitions={[
+            { name: "1x 100,00", value: "100" },
+            { name: "2x 55,00", value: "110" },
+            { name: "3x 40,00", value: "120" },
+          ]}
           setValue={(e) => console.log(e)}
-          type="card"
-          maskInput="9999 9999 9999 9999"
+          label="Label:"
           errors={[
             {
               description: "error message here",
@@ -69,13 +74,11 @@ function App() {
         />
 
         <code>
-          {`<Input
+          {`<Select
           sm
-          placeHolder="0000 0000 0000"
-          label="Label: "
+          opitions={[{ name: "1x 100,00", value: "100" },{ name: "2x 55,00", value: "110" },{ name: "3x 40,00", value: "120" }]}
           setValue={(e) => console.log(e)}
-          type="card"
-          maskInput="9999 9999 9999 9999"
+          label="Label:"
           errors={[
             {
               description: "error message here",
@@ -379,6 +382,62 @@ const Finished = () => {
           label="Label: "
           setValue={(e) => console.log(e)}
           type="search"
+          errors={[
+            {
+              description: "error message here",
+              errorType: "error",
+              inputName: "e-mail",
+            },
+          ]}
+        />`}
+        </code>
+      </Container>
+      <Container>
+        <h2>Card </h2>
+        <Input
+          sm
+          placeHolder="0000 0000 0000"
+          label="Label: "
+          setValue={(e) => console.log(e)}
+          type="card"
+          maskInput="9999 9999 9999 9999"
+        />
+
+        <code>
+          {`<Input
+          sm
+          placeHolder="0000 0000 0000"
+          label="Label: "
+          setValue={(e) => console.log(e)}
+          type="card"
+          maskInput="9999 9999 9999 9999"
+        />`}
+        </code>
+        <h2>Card error</h2>
+        <Input
+          sm
+          placeHolder="0000 0000 0000"
+          label="Label: "
+          setValue={(e) => console.log(e)}
+          type="card"
+          maskInput="9999 9999 9999 9999"
+          errors={[
+            {
+              description: "error message here",
+              errorType: "error",
+              inputName: "e-mail",
+            },
+          ]}
+        />
+
+        <code>
+          {`<Input
+          sm
+          placeHolder="0000 0000 0000"
+          label="Label: "
+          setValue={(e) => console.log(e)}
+          type="card"
+          maskInput="9999 9999 9999 9999"
           errors={[
             {
               description: "error message here",

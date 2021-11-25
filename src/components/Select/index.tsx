@@ -1,51 +1,88 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-import { Container } from './styles'
+import { Container } from "./styles";
 
 interface PropsInput {
-  setValue: (e: string) => any,
-  opitions: [{
-    name: string,
-    value?: string,
-  }],
-  defaultValue?: string | number,
-  errors?: [{
-    description: string,
-  }],
-  alerts?: [{
-    description: string,
-  }],
-  sucess?: Boolean,
-}
-export const Select: React.FC<PropsInput> = ({ setValue, errors, alerts, sucess, defaultValue, children, opitions, ...attrs }) => {
+  opitions: 
+    Array<{
+      name: string;
+      value?: string;
+    }>
+  ;
+  defaultValue?: string | number;
 
-  const [inputValue, setInputValue] = useState<string>('')
+  setValue: (e: string) => any;
+  errors?:
+    | Array<{
+        description: string;
+        errorType: string;
+        inputName: string;
+      }>
+    | []
+    | undefined
+    | null;
+  validationStatus?: "error" | "sucess" | "validating";
+  inputRef?: React.RefObject<HTMLInputElement>;
+  label: string;
+  disabled?: boolean | undefined;
+  [x: string]: any;
+}
+export const Select: React.FC<PropsInput> = ({
+  setValue,
+  errors,
+  alerts,
+  sucess,
+  defaultValue,
+  children,
+  label,
+  opitions,
+  validationStatus,
+  inputRef,
+  disabled,
+  ...attrs
+}) => {
+  const [inputValue, setInputValue] = useState<string>("");
 
   useEffect(() => {
-
-    setValue(inputValue)
-
-  }, [inputValue])
+    setValue(inputValue);
+  }, [inputValue]);
 
   return (
-    <Container className={errors && errors.length ? 'error' : alerts&& alerts.length ? 'alert' : ''} {...attrs} >
-      {
-        errors && errors.length ? errors.map((error, index) => index === 1 ? <span>{error.description}</span> : null)
-          :
-          alerts && alerts.length ? alerts.map((alert, index) => index === 1 ? <span>{alert.description}</span> : null)
-            :
-            null
+    <Container
+      className={
+        errors && errors.length
+          ? "error"
+          : ""
       }
-      <select defaultValue={defaultValue} onChange={(e) => setInputValue(e.target.value)} value={inputValue} >
-
-        {
-
-          opitions.map((option, index) => <option value={option.value || index}>{option.name}</option>)
-
-        }
-
+      {...attrs}
+    >
+      {errors && errors.length
+        ? errors.map((error, index) =>
+            index === 1 ? <span>{error.description}</span> : null
+          )
+        : null}
+      <select
+        defaultValue={defaultValue}
+        onChange={(e) => setInputValue(e.target.value)}
+        value={inputValue}
+        disabled={disabled}
+      >
+        {opitions.map((option, index) => (
+          <option  value={option.value || index}>{option.name}</option>
+        ))}
       </select>
+      {errors && Boolean(errors.length)
+        ? errors.map((error, index) => {
+            return (
+              <span>
+                {errors.length > 1 && errors.length > index + 1
+                  ? `${error.description}, `
+                  : `${error.description}.`}
+              </span>
+            );
+          })
+        : null}
       {children}
     </Container>
-  )
-}
+  );
+};
