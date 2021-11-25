@@ -28,11 +28,11 @@ export const Select: React.FC<PropsInput> = ({ setValue, errors, alerts, sucess,
   }, [inputValue])
 
   return (
-    <Container className={errors.length ? 'error' : alerts.length ? 'alert' : ''} {...attrs} >
+    <Container className={errors && errors.length ? 'error' : alerts&& alerts.length ? 'alert' : ''} {...attrs} >
       {
-        errors.length ? errors.map((error, index) => index === 1 ? <span>{error.description}</span> : null)
+        errors && errors.length ? errors.map((error, index) => index === 1 ? <span>{error.description}</span> : null)
           :
-          alerts.length ? alerts.map((alert, index) => index === 1 ? <span>{alert.description}</span> : null)
+          alerts && alerts.length ? alerts.map((alert, index) => index === 1 ? <span>{alert.description}</span> : null)
             :
             null
       }
