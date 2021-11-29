@@ -3,6 +3,7 @@ import { Input } from "./components/Input";
 import { Select } from "./components/Select";
 import styled from "styled-components";
 import { Button } from "./components/Button";
+import { Alert } from "./components/Alert";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -32,69 +33,24 @@ function App() {
   return (
     <>
       <Container>
-        <h2>Butttons Primary</h2>
-        <br />
-        <h4>Butttons default</h4>
+        <h2>Alert</h2>
         <Button onClick={() => console.log(Math.random())}>
-          Label button
+          Click to open
+          <Alert
+            alerts={[
+              {
+                label: "Lorem ipsum dolor sit amet.",
+                status: true,
+                type: "information",
+                icon: true,
+                open:true,
+                closable: true,
+              },
+            ]}
+          ></Alert>
         </Button>
         <code>
           {`<Button onClick={() => console.log(Math.random())}>
-          Label button
-        </Button>`}
-        </code>
-
-
-        <h4>Butttons Primary SM</h4>
-        <Button sm onClick={() => console.log(Math.random())}>
-          Label button
-        </Button>
-        <code>
-          {`<Button sm onClick={() => console.log(Math.random())}>
-          Label button
-        </Button>`}
-        </code>
-
-        <h4>Butttons Primary XS</h4>
-        <Button xs onClick={() => console.log(Math.random())}>
-          Button
-        </Button>
-        <code>
-          {`<Button xs onClick={() => console.log(Math.random())}>
-          Label button
-        </Button>`}
-        </code>
-      </Container>
-      <Container>
-        <h2>Butttons Secondary</h2>
-        <br />
-        <h4>Butttons default</h4>
-        <Button secondary onClick={() => console.log(Math.random())}>
-          Label button
-        </Button>
-        <code>
-          {`<Button onClick={() => console.log(Math.random())}>
-          Label button
-        </Button>`}
-        </code>
-
-
-        <h4>Butttons Secondary SM</h4>
-        <Button sm secondary onClick={() => console.log(Math.random())}>
-          Label button
-        </Button>
-        <code>
-          {`<Button sm onClick={() => console.log(Math.random())}>
-          Label button
-        </Button>`}
-        </code>
-
-        <h4>Butttons Secondary XS</h4>
-        <Button xs secondary onClick={() => console.log(Math.random())}>
-          Button
-        </Button>
-        <code>
-          {`<Button xs onClick={() => console.log(Math.random())}>
           Label button
         </Button>`}
         </code>
@@ -515,6 +471,70 @@ const Finished = () => {
             },
           ]}
         />`}
+        </code>
+      </Container>
+      <Container>
+        <h2>Butttons Primary</h2>
+        <br />
+        <h4>Butttons default</h4>
+        <Button onClick={() => console.log(Math.random())}>Label button</Button>
+        <code>
+          {`<Button onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
+        </code>
+
+        <h4>Butttons Primary SM</h4>
+        <Button sm onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>
+        <code>
+          {`<Button sm onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
+        </code>
+
+        <h4>Butttons Primary XS</h4>
+        <Button xs onClick={() => console.log(Math.random())}>
+          Button
+        </Button>
+        <code>
+          {`<Button xs onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
+        </code>
+      </Container>
+      <Container>
+        <h2>Butttons Secondary</h2>
+        <br />
+        <h4>Butttons default</h4>
+        <Button secondary onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>
+        <code>
+          {`<Button secondary onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
+        </code>
+
+        <h4>Butttons Secondary SM</h4>
+        <Button sm secondary onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>
+        <code>
+          {`<Button sm secondary onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
+        </code>
+
+        <h4>Butttons Secondary XS</h4>
+        <Button xs secondary onClick={() => console.log(Math.random())}>
+          Button
+        </Button>
+        <code>
+          {`<Button xs secondary onClick={() => console.log(Math.random())}>
+          Label button
+        </Button>`}
         </code>
       </Container>
     </>

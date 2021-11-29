@@ -1,28 +1,37 @@
-import React from 'react';
-import { Icon } from '../Icons';
-import { Container } from './styles';
+import React from "react";
+import { Icon } from "../Icons";
+import { Container, Side } from "./styles";
 
 interface PropsAlert {
-    icon: Boolean;
-    closable: Boolean;
-    label: string;
-    status: Boolean;
-    type: 'error' | 'alert' | 'sucess' | 'info' | 'primary';
+  alerts:
+    | []
+    | Array<{
+        icon?: Boolean;
+        closable?: Boolean;
+        label: string;
+        status: Boolean;
+        type: "error" | "alert" | "sucess" | "information" | "primary";
+        open: Boolean;
+      }>;
+  side?: "left" | "rigth";
 }
 
 export const Alert: React.FC<PropsAlert> = ({
-    icon,
-    closable,
-    label,
-    status,
-    type,
+  children,
+  
+  alerts,
+  side = "rigth",
 }) => {
-    return (
-        <Container className={type} >
-            {icon && <Icon name="tags" type={type} />}
-            {status && <>{type}</>}
-            <label>{label}</label>
-            {closable && <Icon name="tags" type="close" />}
+  return (
+    <Side {...side} className={open ? 'visible' : 'hidden'} >
+      {alerts.map((alert) => (
+        <Container className={alert.type}>
+          {alert.icon && <Icon name={alert.type} />}
+          {alert.status && <>{alert.type}</>}
+          <label>{alert.label}</label>
+          {alert.closable && <Icon name="settings-close"  />}
         </Container>
-    );
+      ))}
+    </Side>
+  );
 };

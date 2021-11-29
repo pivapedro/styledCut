@@ -98,9 +98,9 @@ const theme = {
         },
       },
       weight: {
-        xs: "14px",
-        sm: "14px",
-        xl: "16px",
+        xs: "600",
+        sm: "600",
+        xl: "600",
       },
     },
     color: {

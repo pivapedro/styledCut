@@ -3,6 +3,9 @@ import React, { Fragment } from "react";
 
 import { Container } from "./styles";
 
+import { ReactComponent as Information } from "../../assets/icon/information.svg";
+import { ReactComponent as Close } from "../../assets/icon/Settings-Close.svg";
+
 interface IconProps {
   name:
     | "menu"
@@ -33,11 +36,27 @@ interface IconProps {
     | "weather"
     | "transport"
     | "school"
-    | "diverse";
-  type: string;
+    | "diverse"
+    | "information"
+    | "settings-close"
+    | "verify"
+    | "forbbidden-2"
+    | "error"
+    | "alert"
+    | "sucess"
+    | "information"
+    | "primary"
+    | "close";
+  type?: string;
 }
 
 export const Icon: React.FC<IconProps> = ({ name, type }) => {
-  
-  return <Container>{({ type })}</Container>;
+  switch (name) {
+    case "settings-close" || "close" :
+      return <Close />;
+    case "information" || "info":
+      return <Information />;
+    default:
+      return <Container>{name}</Container>;
+  }
 };
