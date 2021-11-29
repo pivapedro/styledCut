@@ -5,6 +5,9 @@ import { Container } from "./styles";
 
 import { ReactComponent as Information } from "../../assets/icon/information.svg";
 import { ReactComponent as Close } from "../../assets/icon/Settings-Close.svg";
+import { ReactComponent as Error } from "../../assets/icon/forbidden-2.svg";
+import { ReactComponent as Sucess } from "../../assets/icon/verify.svg";
+import { ReactComponent as Alert } from "../../assets/icon/warning-2.svg";
 
 interface IconProps {
   name:
@@ -45,17 +48,30 @@ interface IconProps {
     | "alert"
     | "sucess"
     | "information"
+    | "info"
     | "primary"
+    | "erro"
     | "close";
   type?: string;
+  [x: string]: any;
 }
 
-export const Icon: React.FC<IconProps> = ({ name, type }) => {
+export const Icon: React.FC<IconProps> = ({ name, type, ...attrs}) => {
   switch (name) {
-    case "settings-close" || "close" :
-      return <Close />;
-    case "information" || "info":
-      return <Information />;
+    case "settings-close":
+    case "close":
+      return <Close {...attrs} />;
+    case "info":
+    case "primary":
+    case "information":
+      return <Information {...attrs} />;
+    case "error":
+    case "erro":
+      return <Error {...attrs} />;
+    case "alert":
+      return <Alert {...attrs} />;
+    case "sucess":
+      return <Sucess {...attrs} />;
     default:
       return <Container>{name}</Container>;
   }

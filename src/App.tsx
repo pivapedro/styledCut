@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "./components/Input";
 import { Select } from "./components/Select";
 import styled from "styled-components";
 import { Button } from "./components/Button";
-import { Alert } from "./components/Alert";
+import { Alerts, PropsAlerts } from "./components/Alert";
 
 const Container = styled.div`
   box-sizing: border-box;
@@ -30,24 +30,77 @@ const Container = styled.div`
 `;
 
 function App() {
+  const [data, setAlerts] = useState<{
+    alerts: PropsAlerts["alerts"];
+    open: boolean;
+  }>({
+    alerts: [
+      {
+        label: "Lorem ipsum dolor sit amet.",
+        status: true,
+        type: "info",
+        icon: true,
+        open: true,
+        closable: true,
+      },
+      {
+        label: "Lorem ipsum dolor sit amet.",
+        status: true,
+        type: "error",
+        icon: true,
+        open: true,
+        closable: false,
+      },
+      {
+        label: "Lorem ipsum dolor sit amet.",
+        status: true,
+        type: "sucess",
+        icon: true,
+        open: true,
+        closable: true,
+      },
+      {
+        label: "Lorem ipsum dolor sit amet.",
+        status: true,
+        type: "alert",
+        icon: true,
+        open: true,
+        closable: true,
+      },
+    ],
+    open: false,
+  });
+
+
+  const addNotification = () => {
+    setAlerts({
+      alerts: [
+        ...data.alerts,
+        {
+          label: "Teste new notification." ,
+          status: true,
+          type: "primary",
+          icon: true,
+          open: true,
+          closable: true,
+        },
+      ],
+      open: data.open,
+    });
+  };
+
+  const openNotification = () => {
+    setAlerts({ alerts: [...data.alerts], open: !data.open });
+  };
   return (
     <>
+      {data.open && <Alerts alerts={data.alerts} />}
+
       <Container>
         <h2>Alert</h2>
-        <Button onClick={() => console.log(Math.random())}>
-          Click to open
-          <Alert
-            alerts={[
-              {
-                label: "Lorem ipsum dolor sit amet.",
-                status: true,
-                type: "information",
-                icon: true,
-                open:true,
-                closable: true,
-              },
-            ]}
-          ></Alert>
+        <Button onClick={() => openNotification()}>Click to open / close</Button>
+        <Button onClick={() => addNotification()}>
+          Click to add notification
         </Button>
         <code>
           {`<Button onClick={() => console.log(Math.random())}>
