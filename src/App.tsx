@@ -18,8 +18,13 @@ const Container = styled.div`
     background-color: #d5d5d5;
     min-height: 2.7rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     padding: 15px;
+    &.component {
+      white-space: pre-line;
+      tab-size: 2;
+    }
   }
   > * {
     box-sizing: border-box;
@@ -30,7 +35,16 @@ const Container = styled.div`
 `;
 
 function App() {
-  const [data, setAlerts] = useState<{
+  
+  return (
+    <>
+      
+      <Finished />
+    </>
+  );
+}
+const Finished = () => {
+  const [dataAlert, setDataAlerts] = useState<{
     alerts: PropsAlerts["alerts"];
     open: boolean;
   }>({
@@ -49,7 +63,7 @@ function App() {
         type: "error",
         icon: true,
         open: true,
-        closable: false,
+        closable: true,
       },
       {
         label: "Lorem ipsum dolor sit amet.",
@@ -71,13 +85,12 @@ function App() {
     open: false,
   });
 
-
   const addNotification = () => {
-    setAlerts({
+    setDataAlerts({
       alerts: [
-        ...data.alerts,
+        ...dataAlert.alerts,
         {
-          label: "Teste new notification." ,
+          label: "Teste new notification. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. ",
           status: true,
           type: "primary",
           icon: true,
@@ -85,34 +98,13 @@ function App() {
           closable: true,
         },
       ],
-      open: data.open,
+      open: dataAlert.open,
     });
   };
 
   const openNotification = () => {
-    setAlerts({ alerts: [...data.alerts], open: !data.open });
+    setDataAlerts({ alerts: [...dataAlert.alerts], open: !dataAlert.open });
   };
-  return (
-    <>
-      {data.open && <Alerts alerts={data.alerts} />}
-
-      <Container>
-        <h2>Alert</h2>
-        <Button onClick={() => openNotification()}>Click to open / close</Button>
-        <Button onClick={() => addNotification()}>
-          Click to add notification
-        </Button>
-        <code>
-          {`<Button onClick={() => console.log(Math.random())}>
-          Label button
-        </Button>`}
-        </code>
-      </Container>
-      <Finished />
-    </>
-  );
-}
-const Finished = () => {
   return (
     <>
       <Container>
@@ -589,6 +581,85 @@ const Finished = () => {
           Label button
         </Button>`}
         </code>
+      </Container>
+      <Container>
+        <div>
+          {dataAlert.open && <Alerts alerts={dataAlert.alerts} />}
+        </div>
+
+          <h2>Alert</h2>
+          <Button onClick={() => openNotification()}>
+            Click to open / close
+          </Button>
+          <Button onClick={() => addNotification()}>
+            Click to add notification
+          </Button>
+          <code>
+            {`
+           const alertSchema = {
+              alerts: [
+                 {
+                   label: "Lorem ipsum dolor sit amet.",
+                   status: true,
+                   type: "info",
+                   icon: true,
+                   open: true,
+                   closable: true,
+                 },
+                 {...}
+               ],
+               open: Boolean,
+             }
+          
+          `}
+          </code>
+          <code className="component">
+            {`
+           const addNotification = () => {
+            setDataAlerts({
+              alerts: [
+                ...data.alerts,
+                {
+                  label: "Teste new notification.",
+                  status: true,
+                  type: "primary",
+                  icon: true,
+                  open: true,
+                  closable: true,
+                },
+              ],
+              open: data.open,
+            });
+          };
+          `}
+          </code>
+          <code>
+            {`
+        
+          const openNotification = () => {
+            setDataAlerts({ alerts: [...data.alerts], open: !data.open });
+          };
+
+          `}
+          </code>
+          <code className="component">
+            {`
+          const MyComponent = () => {
+            const [dataAlert, setDataAlerts] = useState(alertSchema);
+          return(
+            <>
+              <Button onClick={() => openNotification()}>
+                Click to open / close
+              </Button>
+              <Button onClick={() => addNotification()}>
+                Click to add notification
+              </Button>
+              {data.open && <Alerts alerts={data.alerts} />}
+            </>
+          )
+          };
+          `}
+          </code>
       </Container>
     </>
   );

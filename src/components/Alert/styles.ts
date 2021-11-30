@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import { setColor } from "../../utils/tokens";
 
 const showAnimation = keyframes`
   0%{
@@ -17,10 +18,13 @@ interface PropsContainer {
 }
 
 export const Container = styled.div<PropsContainer>`
-  width: 100%;
   background-color: #ffff;
   color: black;
-  min-height: 56px;
+  min-width: 344px;
+  max-width: 100%;
+  max-height: none;
+  min-height: auto;
+  height: auto;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -31,14 +35,23 @@ export const Container = styled.div<PropsContainer>`
   font-weight: normal;
   font-size: 14px;
   line-height: 150%;
+  gap: 8px;
   div {
     visibility: ${(props) => (props.open ? "hidden" : "visible")};
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    display: block;
     width: 80%;
+    max-height: 100%;
     gap: 7px;
+    padding: 2px;
+    p{
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    label{
+      width: 100%;
+      height: 100%;
+    }
   }
   &:last-child {
     margin-bottom:2rem;
@@ -62,7 +75,7 @@ export const Container = styled.div<PropsContainer>`
   }
   &.info {
     color: #00cfe8;
-    background: #ecf8fa;
+    background:  ${props => setColor(props, 'alert', 'info')};
     svg {
       path {
         fill: #00cfe8;
@@ -110,14 +123,15 @@ export const Container = styled.div<PropsContainer>`
 export const Side = styled.section`
   position: fixed;
   top: 0;
-  right: 0;
+  right: 5px;
   height: 100vh;
   z-index: 999999999999999;
-  width: 25vw;
-  padding: 1.8% 2%;
+  width: 379px;
   gap: 9px;
-  display: flex;
+  display: flex !important;
   flex-direction: column;
+  justify-content: start;
+  align-items:center;
   overflow-x: auto;
-  padding-bottom: 3rem;
+  padding: 2rem 5px 3rem 5px;
 `;

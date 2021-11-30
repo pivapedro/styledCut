@@ -1,5 +1,14 @@
 import { InputProps } from "../components/Input/styles";
 const theme = {
+  alerts: {
+    color: {
+      error: "#faf1f1",
+      sucess: "#eef8f7",
+      info: "#ecf8fa",
+      alert: "#fbf5f0",
+      primary: "#d3f0f5",
+    },
+  },
   border: {
     radius: {
       xs: "0px",
@@ -195,7 +204,11 @@ export const setHeight = (props: any, inputType: string) => {
       return "auto";
   }
 };
-export const setBorder = (props: any, inputType: string, pseudoClass?: string) => {
+export const setBorder = (
+  props: any,
+  inputType: string,
+  pseudoClass?: string
+) => {
   const { primary, secondary } = props;
   switch (inputType) {
     case "button":
@@ -212,19 +225,38 @@ export const setBorder = (props: any, inputType: string, pseudoClass?: string) =
 };
 export const setColor = (
   props: any,
-  inputType: string,
-  pseudoClass?: string
+  component: string,
+  typeComponent?: string
 ) => {
-  const { primary, secondary } = props;
-
-  switch (inputType) {
+  switch (component) {
     case "button":
-      const colors: { primary: string; secondary: string } = readProp(
+      const { primary, secondary } = props;
+      const buttonColors: { primary: string; secondary: string } = readProp(
         theme.button.color,
-        pseudoClass || "default"
+        typeComponent || "default"
       );
 
-      return secondary ? colors.secondary : colors.primary;
+      return secondary ? buttonColors.secondary : buttonColors.primary;
+
+    case "alert":
+      const { type } = props;
+      const Alertcolors: {
+        error: string;
+        sucess: string;
+        info: string;
+        alert: string;
+        primary: string;
+      } = readProp(theme.alerts.color, typeComponent || "primary");
+
+      return type === "error"
+        ? Alertcolors.error
+        : type === "sucess"
+        ? Alertcolors.sucess
+        : type === "info"
+        ? Alertcolors.info
+        : type === "alert"
+        ? Alertcolors.alert
+        : primary;
 
     default:
       return "";

@@ -28,7 +28,6 @@ interface AlertProps {
   };
 }
 export const Alerts: React.FC<PropsAlerts> = ({
-  children,
   alerts,
   side = "rigth",
   ...attr
@@ -36,44 +35,27 @@ export const Alerts: React.FC<PropsAlerts> = ({
   return (
     <Side {...side}>
       {alerts.map((alert, index) => (
-        <Alert key={index} alerts={alert} {...attr} />
+        <Alert key={index} alerts={alert} {...attr}  />
       ))}
     </Side>
   );
 };
 
-const Alert: React.FC<AlertProps> = ({ alerts, ...attr }) => {
+const Alert: React.FC<AlertProps> = ({ alerts,  ...attr }) => {
   const [open, setOpen] = useState<Boolean>(alerts.open);
-  const [dNone, setDnone] = useState<string>("");
-
-  useEffect(() => {
-    if (open && alerts.closable) {
-      setTimeout(() => {
-        //setOpen(!open);
-      }, 6000);
-    }
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (open && alerts.closable) {
-        setDnone("d-none");
-      }
-    }, 5000);
-  }, [open]);
-
   return (
     <Container
       {...attr}
+      {...alerts.type}
       className={
         alerts.type && !!open
           ? "visible " + alerts.type
-          : `hidden  ${alerts.type}  ${dNone}`
+          : `hidden  ${alerts.type} `
       }
     >
       {alerts.icon && <Icon name={alerts.type} />}
       <div>
-        {alerts.status && <>{alerts.type}</>}
+        <p>{alerts.status && <>{alerts.type}</>}</p>
         <label>{alerts.label}</label>
       </div>
       {alerts.closable ? (
