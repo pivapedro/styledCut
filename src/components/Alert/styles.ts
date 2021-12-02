@@ -75,7 +75,8 @@ export const Container = styled.div<PropsContainer>`
   }
   &.info {
     color: #00cfe8;
-    background:  ${props => setColor(props, 'alert', 'info')};
+      //arrumar 
+    background:  #ecf8fa;
     svg {
       path {
         fill: #00cfe8;

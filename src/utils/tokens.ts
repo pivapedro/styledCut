@@ -239,24 +239,17 @@ export const setColor = (
       return secondary ? buttonColors.secondary : buttonColors.primary;
 
     case "alert":
+      //arrumar 
       const { type } = props;
-      const Alertcolors: {
+      const alertColors: {
         error: string;
         sucess: string;
         info: string;
         alert: string;
         primary: string;
       } = readProp(theme.alerts.color, typeComponent || "primary");
-
-      return type === "error"
-        ? Alertcolors.error
-        : type === "sucess"
-        ? Alertcolors.sucess
-        : type === "info"
-        ? Alertcolors.info
-        : type === "alert"
-        ? Alertcolors.alert
-        : primary;
+      console.log(alertColors)
+      return 
 
     default:
       return "";
